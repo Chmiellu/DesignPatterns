@@ -2,7 +2,7 @@ import json
 import csv
 from abc import ABC, abstractmethod
 
-# Singleton: Zarządzanie katalogiem książek
+
 class LibraryCatalog:
     _instance = None
 
@@ -23,7 +23,7 @@ class LibraryCatalog:
     def get_books(self):
         return self.books
 
-# Adapter: Przetwarzanie różnych formatów danych książek
+
 class BookDataAdapter(ABC):
     @abstractmethod
     def adapt_data(self, data):
@@ -41,7 +41,7 @@ class CSVBookAdapter(BookDataAdapter):
             books.append(row)
         return books
 
-# Factory: Tworzenie różnych typów użytkowników
+
 class User(ABC):
     def __init__(self, name):
         self.name = name
@@ -101,7 +101,7 @@ class LibraryNotifier:
         for subscriber in self.subscribers:
             subscriber.update(message)
 
-# Facade: Upraszczanie interakcji z biblioteką
+
 class LibraryInterface:
     def __init__(self):
         self.catalog = LibraryCatalog.get_instance()
@@ -122,7 +122,7 @@ class LibraryInterface:
         self.catalog.add_book(book)
         self.notifier.notify(f"{user.name} zwrócił/a książkę '{book}'.")
 
-# Iterator: Iteracja po książkach i użytkownikach
+
 class BookIterator:
     def __init__(self, books):
         self.books = books
